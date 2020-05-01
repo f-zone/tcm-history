@@ -1,7 +1,8 @@
 <template>
   <div class="container">
     <div class="timeline-box">
-      <DynastyTimeline :dynastyData="dynastyData" />
+      <DynastyTimeline :dynastyData="dynastyCN" />
+      <DynastyTimeline :dynastyData="dynastyJP" />
     </div>
     <div class="events-box"></div>
   </div>
@@ -20,7 +21,8 @@ export default {
   },
   data() {
     return {
-      dynastyData: historyData.historyCN
+      dynastyCN: historyData.historyCN,
+      dynastyJP: historyData.historyJP
     };
   }
 };

@@ -432,19 +432,19 @@ let data = {
       area: "10"
     },
     {
-      name: "魏",
+      name: "三国-魏",
       start: "220",
       end: "266",
       area: "4"
     },
     {
-      name: "蜀",
+      name: "三国-蜀汉",
       start: "221",
       end: "263",
       area: "4"
     },
     {
-      name: "吴",
+      name: "三国-吴",
       start: "229",
       end: "280",
       area: "4"
@@ -656,8 +656,86 @@ let data = {
     {
       name: "中华人民共和国",
       start: "1949",
-      end: "2019",
+      end: "2020",
       area: "10"
+    }
+  ],
+  "数据处理版-日本朝代表": [
+    {
+      name: " 弥生时代",
+      end: "299"
+    },
+    {
+      name: "大和时代",
+      start: "300",
+      end: "591",
+      时间因子: "10"
+    },
+    {
+      name: "飞鸟时代",
+      start: "592",
+      end: "710",
+      时间因子: "10"
+    },
+    {
+      name: "奈良时代",
+      start: "711",
+      end: "793",
+      时间因子: "10"
+    },
+    {
+      name: "平安时代",
+      start: "794",
+      end: "1191",
+      时间因子: "10"
+    },
+    {
+      name: "镰仓时代",
+      start: "1192",
+      end: "1333",
+      时间因子: "10"
+    },
+    {
+      name: "室町时代",
+      start: "1393",
+      end: "1573",
+      时间因子: "10"
+    },
+    {
+      name: "桃山时代",
+      start: "1573",
+      end: "1602",
+      时间因子: "10"
+    },
+    {
+      name: "江户时代",
+      start: "1603",
+      end: "1867",
+      时间因子: "10"
+    },
+    {
+      name: "明治时代",
+      start: "1868",
+      end: "1910",
+      时间因子: "10"
+    },
+    {
+      name: "大正时代",
+      start: "1911",
+      end: "1924",
+      时间因子: "10"
+    },
+    {
+      name: "昭和时代",
+      start: "1925",
+      end: "1988",
+      时间因子: "10"
+    },
+    {
+      name: "平成时代",
+      start: "1989",
+      end: "2020",
+      时间因子: "10"
     }
   ]
 };
@@ -683,11 +761,12 @@ function buildTimelineData(data) {
         year[i] = year[i] || [];
         year[i].push(item);
       }
-      timeline[i + 3000] = timeline[i + 3000] || [];
-      timeline[i + 3000].push(item);
+      timeline[i + 2000] = timeline[i + 2000] || [];
+      timeline[i + 2000].push(item);
     }
   });
   return { pre: pre, year: year, timeline };
 }
 let historyCN = buildTimelineData(data["数据处理版-中国朝代表"]);
-export default { data, historyCN };
+let historyJP = buildTimelineData(data["数据处理版-日本朝代表"]);
+export default { data, historyCN, historyJP };

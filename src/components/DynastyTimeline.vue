@@ -23,6 +23,8 @@ export default {
         let yearData = timeline[i];
 
         if (typeof yearData == "undefined") {
+          html +=
+            '<div class="year-line"><div class="dynasty-line"></div></div>';
           continue;
         }
 
@@ -82,7 +84,7 @@ export default {
 .dynasty-timeline {
   margin-right: 20px;
   width: 120px;
-  height: 5000px;
+  height: 100%;
 }
 .year-line {
   position: relative;
@@ -91,6 +93,7 @@ export default {
     position: relative;
     width: 100%;
     height: 2px;
+    background: #eee;
   }
   .dynasty-name {
     position: absolute;
