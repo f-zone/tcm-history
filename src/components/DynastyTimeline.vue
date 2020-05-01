@@ -1,17 +1,6 @@
 <template>
   <div class="dynasty-timeline">
-    <div v-for="(item, yearIdx) in timeline" :key="yearIdx" class="year-line">
-      <div
-        v-for="(dynasty, cdx) in item"
-        :key="cdx"
-        class="dynasty-line"
-        :class="'bk' + getBackgroundIndex(yearIdx, dynasty.name)"
-      >
-        <div v-if="haveShow(yearIdx, dynasty.name)" class="dynasty-name">
-          {{ dynasty.name }}
-        </div>
-      </div>
-    </div>
+    <div v-html="dataHtml"></div>
   </div>
 </template>
 
@@ -23,9 +12,36 @@ export default {
   },
   created() {
     this.timeline = this.dynastyData.timeline;
-    console.info(777, this.timeline);
+    this.dataHtml = this.renderHtml();
   },
   methods: {
+    renderHtml() {
+      let timeline = this.timeline;
+      let html = "";
+
+      for (let i = 0; i < timeline.length; i++) {
+        let yearData = timeline[i];
+
+        if (typeof yearData == "undefined") {
+          continue;
+        }
+
+        html += '<div class="year-line">';
+        for (let j = 0; j < yearData.length; j++) {
+          let dynasty = yearData[j];
+          html +=
+            '<div class="dynasty-line bk' +
+            this.getBackgroundIndex(i, dynasty.name) +
+            '">';
+          if (this.haveShow(i, dynasty.name)) {
+            html += '<div class="dynasty-name">' + dynasty.name + "</div>";
+          }
+          html += "</div>";
+        }
+        html += "</div>";
+      }
+      return html;
+    },
     haveShow(yearIdx, name) {
       let ret = false;
       if (typeof this.nameShow[yearIdx - 1 + "_" + name] === "undefined") {
@@ -50,6 +66,7 @@ export default {
   },
   data() {
     return {
+      dataHtml: "",
       preYear: 0,
       dynastyColor: {},
       dynastyIndex: 0,
@@ -61,7 +78,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style lang="scss">
 .dynasty-timeline {
   width: 120px;
   height: 5000px;
@@ -72,7 +89,7 @@ export default {
   .dynasty-line {
     position: relative;
     width: 100%;
-    height: 1px;
+    height: 2px;
   }
   .dynasty-name {
     position: absolute;
