@@ -31,6 +31,8 @@ export default {
   display: flex;
   .timeline-box {
     flex-grow: 1;
+    display: flex;
+    flex-direction: row-reverse;
     border-right: 1px solid #ccc;
   }
   .events-box {

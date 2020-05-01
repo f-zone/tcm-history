@@ -80,6 +80,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 .dynasty-timeline {
+  margin-right: 20px;
   width: 120px;
   height: 5000px;
 }
